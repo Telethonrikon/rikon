@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
-# The entire source code is OSSRPL except 'whois' which is MPL
+# The entire source code is OSSRPL except 'ايدي' which is MPL
 # License: MPL and OSSRPL
 """ Userbot module for getiing info about any user on Telegram(including you!). """
 
@@ -21,8 +21,8 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import spamwatch
 
 
-@borg.on(admin_cmd(pattern="userinfo(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="userinfo(?: |$)(.*)", allow_sudo=True))
+@borg.on(admin_cmd(pattern="كشف(?: |$)(.*)"))
+@borg.on(sudo_cmd(pattern="كشف(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -65,13 +65,11 @@ async def _(event):
             cas = "**Antispam(CAS) Banned :** `False`"
     else:
         cas = "**Antispam(CAS) Banned :** `Couldn't Fetch`"
-    caption = """**Info of [{}](tg://user?id={}):
-   -🔖ID : **`{}`
-   **-**👥**Groups in Common : **`{}`
-   **-**🌏**Data Centre Number : **`{}`
-   **-**🔏**Restricted by telegram : **`{}`
-   **-**🦅{}
-   **-**👮‍♂️{}
+    caption = """**👤¦ اسم العضو [{}](tg://user?id={}):
+  🔖¦ ايد العضو : **`{}`
+   **👥**¦** المجموعات المشتركة : **`{}`
+   **🌏**¦**رقم مركز البيانات‌‌ : **`{}`
+   **🔏**¦**القيود العضو : **`{}`
 """.format(
         first_name,
         user_id,
@@ -118,14 +116,14 @@ async def get_full_user(event):
             return replied_user, None
         except Exception as e:
             return None, e
-    return None, "No input is found"
+    return None, "رجاء قم برد ع المستخدم"
 
 
-@borg.on(admin_cmd(pattern="whois(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="whois(?: |$)(.*)", allow_sudo=True))
+@borg.on(admin_cmd(pattern="ايدي(?: |$)(.*)"))
+@borg.on(sudo_cmd(pattern="ايدي(?: |$)(.*)", allow_sudo=True))
 async def who(event):
     cat = await edit_or_reply(
-        event, "`Sit tight while I steal some data from Mark Zuckerburg...`"
+        event, "`جاري ضهار معلوماتك....`"
     )
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
@@ -221,25 +219,25 @@ async def fetch_info(replied_user, event):
     username = "@{}".format(username) if username else ("This User has no Username")
     user_bio = "This User has no About" if not user_bio else user_bio
     caption = "<b>USER INFO from druv's database :</b>\n\n"
-    caption += f"👤First Name: {first_name} {last_name}\n"
-    caption += f"🤵Username: {username}\n"
-    caption += f"🔖ID: <code>{user_id}</code>\n"
-    caption += f"🌏Data Centre ID: {dc_id}\n"
-    caption += f"🖼Number of Profile Pics: {replied_user_profile_photos_count}\n"
-    caption += f"🤖Is Bot: {is_bot}\n"
-    caption += f"🔏Is Restricted: {restricted}\n"
-    caption += f"🌐Is Verified by Telegram: {verified}\n\n"
-    caption += f"✍️Bio: \n<code>{user_bio}</code>\n\n"
-    caption += f"👥Common Chats with this user: {common_chat}\n"
-    caption += f"🔗Permanent Link To Profile: "
+    caption += f"👤¦ اسمك: {first_name} {last_name}\n"
+    caption += f"🤵¦ معرفك: {username}\n"
+    caption += f"🔖¦ ايدك: <code>{user_id}</code>\n"
+    caption += f"🌏¦ معرف مركز البيانات‌‌: {dc_id}\n"
+    caption += f"🖼¦ عدد صورك: {replied_user_profile_photos_count}\n"
+    caption += f"🤖¦ هل هوا بوت: {is_bot}\n"
+    caption += f"🔏¦ القيود: {restricted}\n"
+    caption += f"🌐¦ تم التحقق من برقيه: {verified}\n\n"
+    caption += f"✍️¦ نبذه: \n<code>{user_bio}</code>\n\n"
+    caption += f"👥عدد الكروبات المستخدم بها: {common_chat}\n"
+    caption += f"🔗 ¦ ملف تعريفي: "
     caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
     return photo, caption
 
 
-@borg.on(admin_cmd(pattern="link(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="link(?: |$)(.*)", allow_sudo=True))
+@borg.on(admin_cmd(pattern="اسمه(?: |$)(.*)"))
+@borg.on(sudo_cmd(pattern="اسمه(?: |$)(.*)", allow_sudo=True))
 async def permalink(mention):
-    """ For .link command, generates a link to the user's PM with a custom text. """
+    """ For .اسمه command, generates a اسمه to the user's PM with a custom text. """
     user, custom = await get_user_from_event(mention)
     if not user:
         return
@@ -296,12 +294,12 @@ async def ge(user, event):
 
 CMD_HELP.update(
     {
-        "whois": "**Plugin : **`whois`\
-    \n\n**Syntax : **`.whois <username>` or reply to someones text with .whois\
+        "ايدي": "**Plugin : **`ايدي`\
+    \n\n**Syntax : **`.ايدي <username>` or reply to someones text with .ايدي\
     \n**Usage :** Gets info of an user.\
-    \n\n**Syntax : **`.userinfo <username>` or reply to someones text with .userinfo\
+    \n\n**Syntax : **`.كشف <username>` or reply to someones text with .كشف\
     \n**Usage :** Gets info of an user.\
-    \n\n**Syntax : **`.link` <text>\
-    \n**Usage :** Generates a link to the user's PM with a custom text."
+    \n\n**Syntax : **`.اسمه` <text>\
+    \n**Usage :** Generates a اسمه to the user's PM with a custom text."
     }
 )
